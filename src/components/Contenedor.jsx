@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-// import "./Style/contenedor.css";
 import Modal from "./Modal";
 import Formulario from "./Formulario";
 import swal from 'sweetalert'
-import Swal from 'sweetalert2';
 
 
-const Contenedor = ({ productos, eliminarProducto, agregarEditarRegistro, productosI}) => {
+
+const Contenedor = ({ productos, elminarP, agregarEditarP, productosI}) => {
   const [mostrar, setMostrar] = useState(false);
   const [] = useState(false);
 
@@ -32,21 +31,17 @@ const Contenedor = ({ productos, eliminarProducto, agregarEditarRegistro, produc
                 <div className="d-flex gap-2 align-items-center justify-content-center">
 
 
-                  <div className="Actualizar">
+                  <div className="Editar">
                   <button
-                    className="btn btn-primary"
-                    onClick={() => setMostrar(producto.id)} 
-                  >
-                    <ion-icon name="build-outline"></ion-icon>
-                  </button>
+                    className="btn btn-primary" onClick={() => setMostrar(producto.id)} >Editar</button>
                   <Modal isOpen={mostrar === producto.id} onClose={() => setMostrar(false)}>
 
-                    <Formulario title="Formulario de Actualizar" agregarEditarRegistro={agregarEditarRegistro} productosI={productosI} idProducto={producto.id} />
+                    <Formulario title="Aqui puedes editar tu producto" agregarEditarP={agregarEditarP} productosI={productosI} idProducto={producto.id} />
                 
                   </Modal>
                   </div>                  
                   <div className="Eliminar">
-                  <button className="btn btn-danger" onClick={() => eliminarProducto(producto.id)}><ion-icon name="person-remove-outline"></ion-icon></button> 
+                  <button className="btn btn-danger" onClick={() => elminarP(producto.id)}>Eliminar</button> 
                   </div>
 
                 </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NumRegistros = ({ totalRegistros, personasTotales }) => {
+const NumRegistros = ({ totalRegistros, productosTotales }) => {
   return (
     <div>
       <div>

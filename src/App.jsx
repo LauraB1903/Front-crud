@@ -1,17 +1,18 @@
 import { useState, useContext } from "react";
-import "./App.css";
 import Contenedor from "./components/Contenedor";
 import Input from "./components/Input";
 import NumRegistros from "./components/NumRegistros";
-import { ContexGlobal } from "./context/ContexGlobal";
+import { ContextGlobal } from "./context/ContextGlobal";
 import Modal from "./components/Modal";
 import Formulario from "./components/Formulario";
+
+
 
 function App() {
   const [mostrar, setMostrar] = useState(false);
   const [] = useState(false);
 
-  const { filtro, setFiltro } = useContext(ContexGlobal);
+  const { filtro, setFiltro } = useContext(ContextGlobal);
 
   const [contador, setContador] = useState(5);
 
@@ -50,20 +51,20 @@ function App() {
   };
 
 
-  const eliminarProducto = (id) => {
+  const elminarP = (id) => {
     const nuevoArray = [...productosI];
     const buscar = nuevoArray.findIndex((producto) => producto.id === id);
     console.log(buscar, "Mostrar");
     swal({
       title:"Eliminar",
-      text:"Deseas Elimnar el Producto",
+      text:"Deseas eliminar este producto?",
       icon:"warning",
-      buttons:["No","Si"],
+      buttons:["Cancelar","Aceptar"],
     }).then(respuesta=>{
       if(respuesta){
         nuevoArray.splice(buscar, 1);
         setProductos(nuevoArray);
-        swal({text:"el archivo ha borrado con exito",
+        swal({text:"el producto se ha eliminado con exito",
       icon:"success",timer:"2000"})
       }
     })
@@ -72,8 +73,8 @@ function App() {
   const opcionesContador = [5, 10, 15, 20,25];
 
 
-  const agregarEditarRegistro = (nuevosRegistros) => {
-    setProductos(nuevosRegistros);
+  const agregarEditarP = (registrosN) => {
+    setProductos(registrosN);
 };
 
   
@@ -104,14 +105,14 @@ function App() {
       <div className="contenedor">
         <Contenedor
         productos={productosFiltrados}
-        eliminarProducto={eliminarProducto}
-        agregarEditarRegistro={agregarEditarRegistro} 
+        elminarP={elminarP}
+        agregarEditarP={agregarEditarP} 
         productosI={productosI}
         ></Contenedor>
       </div>
       <NumRegistros
         totalRegistros={productosFiltrados.length}
-        personasTotales={productosI.length}
+        productosTotales={productosI.length}
       />
       <div>
 
@@ -124,7 +125,7 @@ function App() {
           Agregar
         </button>
         <Modal isOpen={mostrar} onClose={() => setMostrar(false)}>
-          <Formulario title="Formulario de Agregar" agregarEditarRegistro={agregarEditarRegistro} productosI={productosI}/>
+          <Formulario title="Formulario de Agregar" agregarEditarP={agregarEditarP} productosI={productosI}/>
         </Modal>
       </div>
     </div>
